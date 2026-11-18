@@ -1,3 +1,41 @@
+# Space Invaders 확장 프로젝트 — Group 2 (Gameplay HUD)
+
+> 2022년 2학기 한양대학교 ERICA 수업에서 **9개 팀, 약 45명**이 하나의 Java 게임 저장소를 Fork·Pull Request로 나눠 확장한 협업 프로젝트입니다.
+> 이 저장소는 그중 **Group 2 (5명, Gameplay HUD 담당)** 의 작업 포크입니다.
+
+## 내 역할
+
+- **신기록 "new" 표시 기능을 팀원과 함께 개발**: 게임 중 점수가 저장된 최고 기록을 넘으면 점수 앞에 `new`를 표시 (`DrawManager.drawScore()`)
+- Fork → 팀 저장소 → 중앙 저장소로 이어지는 PR 흐름에서 팀원들과 충돌을 해결하며 작업
+
+## Group 2가 만든 기능
+
+1. 인터페이스 색상 선택 (초록 외 빨강·파랑)
+2. 생명 포인트 아이콘 변경
+3. 신기록 달성 시 `new` 표시
+4. 점수 옆 `score` 라벨
+5. 난이도(easy·normal·hard)별 5개 스테이지 선택
+6. 게임 중 획득 코인 표시
+
+## 2026년 포트폴리오 정리 때 고친 것
+
+- **빌드 오류 수정**: 2022-10-27 커밋(`f33da29`)에서 `drawScore()`의 `catch` 블록과 점수 출력이 함께 지워져 컴파일이 되지 않던 문제를 고치고 `new` 표시를 복구했습니다.
+- **인코딩 통일**: `PracticeScreen.java`만 MS949로 저장돼 있던 것을 UTF-8로 바꿔 어느 환경에서나 빌드되게 했습니다.
+
+## 다시 본다면 개선할 점
+
+- `drawScore()`가 화면을 그릴 때마다 최고 기록 파일을, `drawCoin()`이 코인 이미지를 매번 디스크에서 읽습니다. 게임 시작 시 한 번 읽어 캐시해야 합니다.
+- 코인 이미지 경로가 Windows 전용(`icon\\coin-icon.png`)이라 다른 OS에서 동작하지 않습니다.
+
+## 실행
+
+```bash
+javac -encoding UTF-8 -d out $(find src -name "*.java")
+java -cp out:res Main        # Windows는 out;res
+```
+
+---
+
 # Space Invaders
 
 This is a project that extends the [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders) clone ([RobertoIA/Invaders](https://github.com/RobertoIA/Invaders)).
