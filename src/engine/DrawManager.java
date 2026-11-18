@@ -377,7 +377,12 @@ public final class DrawManager {
             		max = highScores.get(i).getScore();
          		}
       		}
+			// 진행 중인 점수가 저장된 최고 기록을 넘으면 "new" 표시
+			scoreString = (max < score ? "new score : " : "score : ") + String.format("%04d", score);
+		} catch (IOException e) {
+			scoreString = "score : " + String.format("%04d", score);
 		}
+		backBufferGraphics.drawString(scoreString, screen.getWidth() - 167, 25);
 	}
 
 	public void drawCoin(final Screen screen, final int coin) {
